@@ -1,0 +1,19 @@
+section.header {
+  .logo {
+    height: 80px;
+  }
+
+  ul.breadcrumbsList {
+    list-style: none;
+
+    .blockPremier {
+      padding: 0 28px;
+    }
+
+    li+li::before {
+      padding: 0 16px;
+      color: hsl(0deg, 0%, 71%);
+      content: ">";
+    }
+  }
+}

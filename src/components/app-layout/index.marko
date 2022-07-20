@@ -1,4 +1,5 @@
 import favicon from "./favicon.png";
+import logo from "./logo.png";
 
 <!doctype html>
 <html lang="en">
@@ -6,24 +7,14 @@ import favicon from "./favicon.png";
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" sizes="32x32" href=favicon>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A basic Marko app.">
-  <title>${input.title}</title>
+  <meta name="description" content=input.meta.meta_description>
+  <meta name="keywords" content=input.meta.meta_keywords>
+  <title>${input.meta.title}</title>
 </head>
 <body>
-  <${input.renderBody}/>
+  <div.containerMain>
+    <${input.body}/>
+  </div>
 </body>
 </html>
 
-style {
-  html, body {
-    font-family: system-ui;
-    padding: 0;
-    margin: 0;
-  }
-  code {
-    color: #fc0;
-  }
-  a {
-    color: #09c;
-  }
-}

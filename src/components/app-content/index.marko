@@ -1,0 +1,26 @@
+<section.appContent>
+    <section.columns>
+        <div.column.is-9.is-offset-3>
+            <h1.blockNative>${input.dataset.page_meta.h1}</h1>
+        </div>
+    </section>
+    <section.columns>
+        <div.column.is-3.widthFiltr>
+            <div.blockPremier.has-background-white>
+                <app-filter stock=(input.dataset.stock)/>
+            </div>
+        </div>
+        <div.column.is-auto>
+            <app-pagination/>
+            <for|item, index| of=(input.dataset.stock)>
+                <app-item key=index itemStock=item/>
+            </for>
+            <app-pagination/>
+            <div.contentWidth>
+                <for|text, index| of=(input.dataset.page_text)>
+                    <p.textContent key=index> ${text.content}</p>
+                </for>
+            </div>
+        </div>
+    </section>
+</section>

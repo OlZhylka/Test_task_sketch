@@ -1,0 +1,27 @@
+<div.itemContainer>
+  <div.itemColumn1>
+    <img.itemImage src=("./assets/img/" + input.itemStock.image)>
+  </div>
+  <div.itemColumn2>
+    <div.verticalFlex>
+      <div>
+        <h3>${input.itemStock.title}</h3>
+        <p>
+          Type: ${input.itemStock.type}, model: ${input.itemStock.model}, make: ${input
+            .itemStock.make}, power: ${input.itemStock.power} ${input.itemStock
+            .power_measure}, payLoad: ${input.itemStock.payLoad}, gross weight: ${input
+            .itemStock.gross_weight}.
+        </p>
+      </div>
+
+      <div.rowProperty>
+        <div.itemProperty>${input.itemStock.year}</div>
+        <div.itemProperty>
+          ${input.itemStock.mileage} ${input.itemStock.mileage_measure}
+        </div>
+        <div.itemProperty>${input.itemStock.axle_configuration}</div>
+      </div>
+    </div>
+  </div>
+  <div.itemColumn3>$ 39 900</div>
+</div>

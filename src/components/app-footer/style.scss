@@ -1,0 +1,95 @@
+.containerMain .columns:not(:last-child).footerContent {
+  margin-bottom: 0;
+}
+
+section.footerApp {
+  %rowFlex {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  %text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+     }
+
+  .blockNative {
+    padding: 39px 16px 24px;
+    
+    .paddingBottom{
+      padding-bottom: 6px;
+    }
+   
+    .footerColumn:not(last-child) {
+      padding-right: 19px;
+    }
+
+
+    .logoSmall {
+      height: 30px;
+      margin-right: 5px;
+    }
+
+    
+
+    .titleFooter {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 116, 7%;
+      color: #333333;
+    }
+
+    .rowInfo {
+      @extend %rowFlex;
+      padding-bottom: 11px;
+
+      .iconMap {
+        margin-right: 7px;
+      }
+  
+      .iconTel {
+        margin-left: 4px;
+        margin-right: 10px;
+      }
+
+      .adressTel {
+        @extend %text;
+        line-height: 1.14;
+        padding-bottom: 6px;
+      }
+    }
+
+    .rowSocial {
+      padding-top: 5px;
+      padding-bottom: 14px;
+      @extend %rowFlex;
+
+      .iconsSocial {
+        margin-right: 11px;
+      }
+    }
+
+    .discription {
+      @extend %text;
+      line-height: 126.3%;
+      color: #4F4F4F;
+      padding-left: 0px;
+    }
+  }
+
+  .privacyRow {
+    background-color: #D9D9D9;
+
+    .colorYear {
+      color: #828282;
+      @extend %text;
+      line-height: 126.3%;
+    }
+
+    a {
+      @extend %text;
+      line-height: 126.3%;
+    }
+  }
+}

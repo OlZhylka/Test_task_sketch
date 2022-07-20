@@ -1,0 +1,67 @@
+class {
+    onCreate(input) {
+        this.state = {
+            years: this.getParams(input, "year"),
+            axle: this.getParams(input, "axle_configuration"),
+        };
+    }
+    getParams(input, param) {
+        let params = input.stock.map((stock) => {
+            return stock[param];
+        });
+        let uniqueParams = params.filter((item, pos) => {
+            return params.indexOf(item) == pos;
+        });
+        return uniqueParams.sort((a, b) => a - b);
+    }
+    // getAxle(input) {
+    //     let years = input.stock.map((stock)=>{
+    //         return stock.year;
+    //     })
+    // }
+}
+
+<section.filterApp>
+    <div>
+        <h4.result>26 Results Found</h4>
+        <details>
+            <summary>Years</summary>
+            <for|year, index| of=state.years>
+                <app-checkbox key=index checkValue=year/>
+            </for>
+        </details>
+        <details>
+            <summary>Axle Configuration</summary>
+            <for|axle, index| of=state.axle>
+                <app-radiobutton
+                    key=index
+                    checkValue=axle
+                    name="axle"
+                    index=index
+                />
+            </for>
+        </details>
+        <details>
+            <summary>Power</summary>
+            <div.rowFilter>
+                <input.inputText#min
+                    type="text"
+                    placeholder="min"
+                    defaultValue=""
+                >
+                <input.inputText#max
+                    type="text"
+                    placeholder="max"
+                    defaultValue=""
+                >
+            </div>
+        </details>
+        <details>
+            <summary>Keywords</summary>
+           <div.rowFilter>
+            <input.inputKeywords type="text" placeholder="Keyword" defaultValue="">
+            </div>
+        </details>
+    </div>
+    <button.buttonSearch>Search</button>
+</section>

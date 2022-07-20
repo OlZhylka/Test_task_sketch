@@ -1,18 +1,40 @@
 {
-  "name": "my-app",
-  "description": "The default Marko starter app",
+  "name": "marko-webpack-example",
+  "description": "Sample app that demonstrates the power of building UI components using Marko and Webpack",
   "version": "1.0.0",
   "dependencies": {
-    "marko": "^5"
+    "@marko-tags/context": "^2.2.2",
+    "@marko-tags/match-media": "^1.2.1",
+    "@marko/express": "^1.0.0",
+    "bulma": "^0.9.4",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "marko": "^5.17.2",
+    "raptor-pubsub": "^1.0.5"
   },
   "devDependencies": {
-    "@marko/build": "^4",
-    "@marko/serve": "^4"
+    "@marko/compiler": "^5.16.1",
+    "@marko/webpack": "^9.2.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.5.0",
+    "css-minimizer-webpack-plugin": "^3.1.1",
+    "html-webpack-plugin": "^5.5.0",
+    "json-loader": "^0.5.7",
+    "marked": "^3.0.8",
+    "mini-css-extract-plugin": "^2.4.3",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
+    "spawn-server-webpack-plugin": "^6.1.0",
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "private": true,
   "scripts": {
-    "build": "marko-build ./src/pages",
-    "dev": "marko-serve ./src/pages",
-    "start": "NODE_ENV=production node ./build/index.js"
+    "build": "rm -rf ./dist && webpack --progress",
+    "dev": "webpack serve",
+    "dev:inspect": "INSPECT=1 npm run dev",
+    "start": "NODE_ENV=production node dist/main.js"
   }
 }

@@ -1,0 +1,87 @@
+.rowPaginationSort {
+    display: flex;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+
+.pagination {
+    margin: 0;
+
+    &:not(:last-child) {
+        margin-bottom: 0;
+    }
+
+    justify-content: flex-start;
+
+    %pagination-box {
+        border: none;
+        border-radius: 0%;
+        background-color: white;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        width: 35px;
+        height: 35px;
+        margin: 0 16px 0 0;
+    }
+
+    .pagination-previous,
+    .pagination-next {
+        @extend %pagination-box;
+    }
+
+    .pagination-list {
+        flex-grow: 0;
+
+        .pagination-link {
+            @extend %pagination-box;
+        }
+
+        .pagination-link.is-current {
+            background-color: #56CCF2;
+            color: #000000;
+        }
+    }
+
+}
+
+.column.sortLabel {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: calc(19/16);
+    color: #000000;
+    padding-right: 0px;
+    }
+
+
+.select select.selectForSort {
+    position: relative;
+    width: 207px;
+    font-size: 1rem;
+    height: 35px;
+    border: 1px solid #BDBDBD;
+    border-radius: unset;
+  } 
+  .select:not(.is-multiple):not(.is-loading)::after {
+     display: none;
+
+}
+.select:not(.is-multiple):not(.is-loading)::before {
+    z-index: 5;
+    content: "";
+    background-image: url("./marcker.svg");
+    padding: 3.745px 7.15px;
+    position: absolute;
+    right: 20px;
+    top: 25px;
+ }
+}
+
+.select:not(.is-multiple) {
+    height: unset;
+}
