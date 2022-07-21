@@ -1,3 +1,34 @@
+class {
+    onCreate(input) {
+        this.state = {
+            stock: input.dataset.stock,
+            indexItem: { index: 0 },
+            step: 3, //количество карточек товара на странице
+        };
+    }
+
+    setStock(stockFiltered) {
+        this.state.stock = stockFiltered.stock;
+        this.state.indexItem = { index: 0 };
+    }
+
+    setIndexItem(indexItem) {
+        this.state.indexItem = {
+            index: this.state.step * (indexItem.pageNumber - 1),
+        };
+    }
+
+    setSortItems(param) {
+        this.state.indexItem = { ...this.state.indexItem };
+        if (param.sortingParam == "priceDown") {
+            this.state.stock.sort((a, b) => b.price - a.price);
+        }
+        if (param.sortingParam == "priceUp") {
+            this.state.stock.sort((a, b) => a.price - b.price);
+        }
+    }
+}
+
 <section.appContent>
     <section.columns>
         <div.column.is-9.is-offset-3>
@@ -7,15 +38,36 @@
     <section.columns>
         <div.column.is-3.widthFiltr>
             <div.blockPremier.has-background-white>
-                <app-filter stock=(input.dataset.stock)/>
+                <app-filter
+                    stock=(input.dataset.stock)
+                    onEmSetStock("setStock")
+                />
             </div>
         </div>
         <div.column.is-auto>
-            <app-pagination/>
-            <for|item, index| of=(input.dataset.stock)>
-                <app-item key=index itemStock=item/>
+            <app-pagination
+                stockPag=state.stock
+                step=state.step
+                onEmSetIndexItem("setIndexItem")
+                onEmSetSortItems("setSortItems")
+            />
+            <for|i|
+                from=(state.indexItem.index)
+                to=(state.indexItem.index + (state.step - 1))
+            >
+                <if(state.stock[i])>
+                    <app-item
+                        key=(state.stock[i].image)
+                        itemStock=(state.stock[i])
+                    />
+                </if>
             </for>
-            <app-pagination/>
+             <app-pagination
+                stockPag=state.stock
+                step=state.step
+                onEmSetIndexItem("setIndexItem")
+                onEmSetSortItems("setSortItems")
+            />
             <div.contentWidth>
                 <for|text, index| of=(input.dataset.page_text)>
                     <p.textContent key=index> ${text.content}</p>

@@ -1,0 +1,10 @@
+class {
+setCurrentPage(event) {
+       this.emit("emSetPage", {
+        pageNumber: event.target.innerText,
+         });
+  }
+ }
+
+<a.pagination-link.${input.pageCurrent==input.pageNumber&&"is-current"}.aria-label="Page"+input.pageNumber onClick("setCurrentPage")>${input.pageNumber}</a>
+  

@@ -1,3 +1,10 @@
+$ {
+  const price_currency = {
+    EUR: "€",
+    USD: "$",
+  };
+}
+
 <div.itemContainer>
   <div.itemColumn1>
     <img.itemImage src=("./assets/img/" + input.itemStock.image)>
@@ -13,15 +20,17 @@
             .itemStock.gross_weight}.
         </p>
       </div>
-
       <div.rowProperty>
-        <div.itemProperty>${input.itemStock.year}</div>
-        <div.itemProperty>
-          ${input.itemStock.mileage} ${input.itemStock.mileage_measure}
-        </div>
-        <div.itemProperty>${input.itemStock.axle_configuration}</div>
+        <app-tag itemProperty=(input.itemStock.year)/>
+        <app-tag itemProperty=(
+          input.itemStock.mileage + " " + input.itemStock.mileage_measure
+        )/>
+        <app-tag itemProperty=(input.itemStock.axle_configuration)/>
       </div>
     </div>
   </div>
-  <div.itemColumn3>$ 39 900</div>
+  <div.itemColumn3>
+    ${price_currency[input.itemStock.price_currency]}&nbsp${input.itemStock
+      .price}
+  </div>
 </div>

@@ -3,8 +3,16 @@ class {
         this.state = {
             years: this.getParams(input, "year"),
             axle: this.getParams(input, "axle_configuration"),
+            stock: input.stock,
+            yearChecked: [],
+            axleRadioChecked: "",
+            minValuePower: null,
+            maxValuePower: null,
+            flagError: false,
+            keyword: "",
         };
     }
+
     getParams(input, param) {
         let params = input.stock.map((stock) => {
             return stock[param];
@@ -14,11 +22,84 @@ class {
         });
         return uniqueParams.sort((a, b) => a - b);
     }
-    // getAxle(input) {
-    //     let years = input.stock.map((stock)=>{
-    //         return stock.year;
-    //     })
-    // }
+
+    searchClick() {
+        let stockNew = this.state.stock.filter((item) => {
+            return (
+                !this.state.yearChecked.length ||
+                this.state.yearChecked.find((i) => i == item.year)
+            );
+        });
+
+        stockNew = stockNew.filter((item) => {
+            return (
+                !this.state.axleRadioChecked ||
+                this.state.axleRadioChecked == item.axle_configuration
+            );
+        });
+
+        stockNew = stockNew.filter((item) => {
+            return (
+                !this.state.minValuePower ||
+                this.state.minValuePower <= item.power
+            );
+        });
+
+        stockNew = stockNew.filter((item) => {
+            return (
+                !this.state.maxValuePower ||
+                this.state.maxValuePower >= item.power
+            );
+        });
+
+        stockNew = stockNew.filter((item) => {
+            return (
+                !this.state.keyword ||
+                item.type.includes(this.state.keyword) ||
+                item.title.includes(this.state.keyword)
+            );
+        });
+
+        this.emit("emSetStock", {
+            stock: stockNew,
+        });
+    }
+
+    setCheckbox(data) {
+        if (data.checked) {
+            this.state.yearChecked.push(data.year);
+        } else {
+            this.state.yearChecked = this.state.yearChecked.filter(
+                (value) => value !== data.year
+            );
+        }
+    }
+
+    setRadio(data) {
+        this.state.axleRadioChecked = data.axle;
+    }
+
+    setMinValuePower(event) {
+        this.state.minValuePower = event.target.value;
+        if (!isNaN(event.target.value)) {
+            this.state.flagError = false;
+        } else {
+            this.state.flagError = true;
+        }
+    }
+
+    setMaxValuePower(event) {
+        this.state.maxValuePower = event.target.value;
+        if (!isNaN(event.target.value)) {
+            this.state.flagError = false;
+        } else {
+            this.state.flagError = true;
+        }
+    }
+
+    setKeyword(event) {
+        this.state.keyword = event.target.value;
+    }
 }
 
 <section.filterApp>
@@ -27,7 +108,11 @@ class {
         <details>
             <summary>Years</summary>
             <for|year, index| of=state.years>
-                <app-checkbox key=index checkValue=year/>
+                <app-checkbox
+                    key=index
+                    checkValue=year
+                    onEmSetCheckbox("setCheckbox")
+                />
             </for>
         </details>
         <details>
@@ -38,6 +123,7 @@ class {
                     checkValue=axle
                     name="axle"
                     index=index
+                    onEmSetRadio("setRadio")
                 />
             </for>
         </details>
@@ -47,21 +133,31 @@ class {
                 <input.inputText#min
                     type="text"
                     placeholder="min"
-                    defaultValue=""
+                    value=state.minValuePower
+                    onInput("setMinValuePower")
                 >
                 <input.inputText#max
                     type="text"
                     placeholder="max"
-                    defaultValue=""
+                    value=state.maxValuePower
+                    onInput("setMaxValuePower")
                 >
             </div>
+            <if(state.flagError)>
+                <div.errorMessage>Enter a numeric value!</div>
+            </if>
         </details>
         <details>
             <summary>Keywords</summary>
-           <div.rowFilter>
-            <input.inputKeywords type="text" placeholder="Keyword" defaultValue="">
+            <div.rowFilter>
+                <input.inputKeywords
+                    type="text"
+                    placeholder="Keyword"
+                    value=state.keyword
+                    onChange("setKeyword")
+                >
             </div>
         </details>
     </div>
-    <button.buttonSearch>Search</button>
+    <button.buttonSearch on-click("searchClick")>Search</button>
 </section>

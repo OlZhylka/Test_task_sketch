@@ -1,14 +1,18 @@
 .filterApp {
+    %fontNative{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: calc(19/16);
+    }
 
-    %inputText {
+    %inputSelectBox{
         height: 35px;
         padding: 7px 8px;
+        color: #828282;
         border: 1px solid #BDBDBD;
         border-radius: 0;
         background-color: white;
-        line-height: calc(19/16);
-        color: #828282;
-
+     
         &:focus,
         &:focus-visible {
             border-color: #2D9CDB;
@@ -35,9 +39,7 @@
     }
 
     details>summary {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: calc(19/16);
+        @extend %fontNative;
         color: #333333;
         position: relative;
         list-style: none;
@@ -63,12 +65,14 @@
 
     .inputText {
         width: 104px;
-        @extend %inputText
+        @extend %fontNative;
+        @extend %inputSelectBox;
     }
 
     .inputKeywords {
         width: 100%;
-        @extend %inputText
+        @extend %fontNative;
+        @extend %inputSelectBox;
     }
 
     .buttonSearch {
@@ -78,9 +82,7 @@
         border: none;
         background-color: #56CCF2;
         text-transform: uppercase;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.19;
+        @extend %fontNative;
         color: white;
 
         &:hover {
@@ -95,5 +97,9 @@
         &:disabled {
             color: #E0E0E0;
         }
+    }
+    .errorMessage {
+        font-size: 8px;
+        color: crimson;
     }
 }

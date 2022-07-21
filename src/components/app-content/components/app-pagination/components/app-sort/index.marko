@@ -1,0 +1,20 @@
+class {
+  setSortingValue(event) {
+    this.emit("emSetSortingValue", {
+      sortingValue: event.target.value,
+    });
+  }
+}
+
+<section.sortItems>
+  <div.columns.is-vcentered>
+    <div.column.sortLabel>Sort by</div>
+    <div.column.select>
+      <select.selectForSort onChange("setSortingValue")>
+        <option value="" selected disabled hidden>Sort options</option>
+        <option value="priceUp">ascending price</option>
+        <option value="priceDown">descending price</option>
+      </select>
+    </div>
+  </div>
+</section>

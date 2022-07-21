@@ -1,19 +1,61 @@
+class {
+  onCreate(input) {
+    this.state = {
+      stockPag: input.stockPag,
+      quantityOfpagLinks: Math.ceil(input.stockPag.length/input.step),
+      pageCurrent: 1,
+    };
+  }
+
+   onInput(input, out) {
+    this.state.quantityOfpagLinks = Math.ceil(input.stockPag.length/input.step);
+  }
+  
+  emitSetIndexItem (){
+this.emit("emSetIndexItem", {
+      pageNumber: this.state.pageCurrent,
+    });
+
+  }
+
+  setPage(pageNumber) {
+    this.state.pageCurrent= pageNumber.pageNumber;
+    this.emitSetIndexItem();
+  }
+
+  goToPrevPage() {
+    if(this.state.pageCurrent!=1){
+    this.state.pageCurrent--;
+    this.emitSetIndexItem();
+    }
+  }
+
+   goToNextPage() {
+    if(this.state.pageCurrent!=this.state.quantityOfpagLinks){
+    this.state.pageCurrent++;
+    this.emitSetIndexItem();
+  }
+   }
+  
+   setSortingValue(value){
+          this.emit("emSetSortItems", {
+        sortingParam: value.sortingValue,
+      });
+   }
+
+}
+
 <section.rowPaginationSort>
-<nav.pagination.is-centered role="navigation" aria-label="pagination">
-  <a.pagination-previous><</a>
-  <a.pagination-next>></a>
-  <ul.pagination-list>
-    <li><a.pagination-link.aria-label="Goto page 1">1</a></li>
-    <li><a.pagination-link.is-current.aria-label="Page 4" aria-current="page">4</a></li>
-  </ul>
-</nav>
-<div.columns.is-vcentered>
-  <div.column.sortLabel>Sort by</div>
-  <div.column.select>
-    <select.selectForSort>
-      <option>Select dropdown</option>
-      <option>With options</option>
-    </select>
-  </div>
-</div> 
+  <nav.pagination.is-centered role="navigation" aria-label="pagination">
+    <a.pagination-previous.${state.pageCurrent==1 &&"is-disabled"} onClick("goToPrevPage")><</a>
+    <a.pagination-next.${state.pageCurrent==state.quantityOfpagLinks &&"is-disabled"} onClick("goToNextPage")>></a>
+    <ul.pagination-list>
+      <for |i| from=1 to=state.quantityOfpagLinks>
+        <li>
+          <app-pag-link key="page" + i pageNumber=i onEmSetPage("setPage") pageCurrent=state.pageCurrent/>
+        </li>
+      </for>
+     </ul>
+  </nav>
+  <app-sort onEmSetSortingValue("setSortingValue")/>
 </section>
