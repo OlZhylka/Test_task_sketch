@@ -2,24 +2,30 @@ class {
     onCreate(input) {
         this.state = {
             stock: input.dataset.stock,
-            indexItem: { index: 0 },
+            indexItem: {
+                index: 0,
+                pageNumber: 1,
+            },
             step: 3, //количество карточек товара на странице
+            sortValue:"",
         };
     }
 
     setStock(stockFiltered) {
         this.state.stock = stockFiltered.stock;
-        this.state.indexItem = { index: 0 };
+        this.state.indexItem = { index: 0, pageNumber: 1 };
     }
 
     setIndexItem(indexItem) {
         this.state.indexItem = {
             index: this.state.step * (indexItem.pageNumber - 1),
+            pageNumber: indexItem.pageNumber,
         };
     }
 
     setSortItems(param) {
         this.state.indexItem = { ...this.state.indexItem };
+        this.state.sortValue = param.sortingParam;
         if (param.sortingParam == "priceDown") {
             this.state.stock.sort((a, b) => b.price - a.price);
         }
@@ -31,7 +37,8 @@ class {
 
 <section.appContent>
     <section.columns>
-        <div.column.is-9.is-offset-3>
+        <div.column.is-3.widthFiltr/>
+        <div.column.is-auto>
             <h1.blockNative>${input.dataset.page_meta.h1}</h1>
         </div>
     </section>
@@ -48,6 +55,8 @@ class {
             <app-pagination
                 stockPag=state.stock
                 step=state.step
+                pageNumber=state.indexItem.pageNumber
+                sortValue=state.sortValue
                 onEmSetIndexItem("setIndexItem")
                 onEmSetSortItems("setSortItems")
             />
@@ -62,15 +71,17 @@ class {
                     />
                 </if>
             </for>
-             <app-pagination
+            <app-pagination
                 stockPag=state.stock
                 step=state.step
+                pageNumber=state.indexItem.pageNumber
+                sortValue=state.sortValue
                 onEmSetIndexItem("setIndexItem")
                 onEmSetSortItems("setSortItems")
             />
             <div.contentWidth>
                 <for|text, index| of=(input.dataset.page_text)>
-                    <p.textContent key=index> ${text.content}</p>
+                    <${text.tag}.textContent key=index> ${text.content}</${text.tag}>
                 </for>
             </div>
         </div>

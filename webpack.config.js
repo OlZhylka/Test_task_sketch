@@ -32,7 +32,7 @@ module.exports = [
       : "eval-cheap-module-source-map",
     output: {
       filename: `${filenameTemplate}.js`,
-      path: path.join(__dirname, "public/assets"),
+      path: path.join(__dirname, "dist/assets"),
     },
     optimization: {
       runtimeChunk: "single",
@@ -155,11 +155,11 @@ function compiler(config) {
       new CopyWebpackPlugin({
         patterns: [{
             from: path.resolve(__dirname, 'src/img'),
-            to: path.resolve(__dirname, 'public/assets/img'),
+            to: path.resolve(__dirname, 'dist/assets/img'),
         }, 
         {
           from: path.resolve(__dirname, 'src/dataset.json'),
-          to: path.resolve(__dirname, 'public/assets/dataset.json'),
+          to: path.resolve(__dirname, 'dist/assets/dataset.json'),
       }],
       }),
     ]

@@ -5,4 +5,18 @@
   font-size: 16px;
   text-transform: uppercase;
   color: #8D8D8D;
+}
+
+@media (max-width: 450px) {
+  .navlink {
+  margin-right: 22px;
+  font-size: 14px;
+}
+} 
+
+@media (max-width: 320px) {
+  .navlink {
+  margin-right: 18px;
+  font-size: 12px;
+}
 } 

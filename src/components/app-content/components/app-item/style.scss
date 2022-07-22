@@ -10,17 +10,17 @@
     background-color: white;
     margin: 16px 0;
     padding: 8px;
-     
+
     .itemColumn1 {
-       padding: 8px; 
-      
+        padding: 8px;
+
         .itemImage {
-         width: 224px;
-         height: 100%;
-         object-fit: fill;
-               }
-    
-       }
+            width: 224px;
+            height: 100%;
+            object-fit: fill;
+        }
+
+    }
 
     .itemColumn2 {
         flex-basis: 47%;
@@ -46,7 +46,7 @@
         text-align: end
     }
 
-   
+
     .verticalFlex {
         @extend %row;
         flex-direction: column;
@@ -55,6 +55,43 @@
     }
 
     .rowProperty {
-        @extend %row;      
+        @extend %row;
     }
+}
+
+@media(max-width: 768px) {
+
+    .itemContainer {
+        .itemColumn1 {
+
+            .itemImage {
+                height: auto;
+            }
+        }
+    }
+}
+
+
+@media(max-width: 425px) {
+
+    .itemContainer {
+        flex-wrap: wrap;
+        display: block;
+
+        &>* {
+            width: calc(100%);
+        }
+
+        .itemColumn1 {
+
+            .itemImage {
+                margin: auto;
+                display: block;
+            }
+        }
+        .rowProperty {
+            margin-top: 5px;
+        }
+    }
+
 }

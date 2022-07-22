@@ -58,3 +58,16 @@
     height: unset;
 }
 }
+
+
+@media(max-width: 768px) {
+
+    .sortItems {
+        margin-top: 8px;
+        .columns {
+         display: flex;
+        flex-wrap: nowrap;
+        }
+    }
+
+}

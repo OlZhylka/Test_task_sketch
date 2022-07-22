@@ -2,20 +2,20 @@ section.appContent {
     .widthFiltr {
         width: 290px;
     }
-    div.blockPremier{
-       display: block;
-  
-         }
+
+    div.blockPremier {
+        display: block;
+    }
 
     h1.blockNative {
-        padding: 5px 0; 
-        }
-    
+        padding: 5px 0;
+    }
+
     .contentWidth {
         margin-top: 24px;
         margin-bottom: 12px;
         max-width: 565px;
-       
+
         .textContent {
             font-style: normal;
             font-weight: 400;
@@ -23,6 +23,31 @@ section.appContent {
             line-height: 126.3%;
             margin-bottom: 11px;
         }
+    }
+}
 
+
+@media(max-width: 768px) {
+
+    section.appContent {
+        .widthFiltr {
+            width: 100%;
+        }
+
+        h1.blockNative {
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+    }
+}
+
+
+@media(max-width: 425px) {
+
+    section.appContent {
+
+        h1.blockNative {
+            font-size: 20px;
+        }
     }
 }

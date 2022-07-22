@@ -3,12 +3,13 @@ class {
     this.state = {
       stockPag: input.stockPag,
       quantityOfpagLinks: Math.ceil(input.stockPag.length/input.step),
-      pageCurrent: 1,
+      pageCurrent: input.pageNumber,
     };
   }
 
    onInput(input, out) {
     this.state.quantityOfpagLinks = Math.ceil(input.stockPag.length/input.step);
+    this.state.pageCurrent = input.pageNumber;
   }
   
   emitSetIndexItem (){
@@ -57,5 +58,5 @@ this.emit("emSetIndexItem", {
       </for>
      </ul>
   </nav>
-  <app-sort onEmSetSortingValue("setSortingValue")/>
+  <app-sort sortValue=input.sortValue onEmSetSortingValue("setSortingValue")/>
 </section>

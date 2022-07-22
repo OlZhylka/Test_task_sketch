@@ -34,16 +34,16 @@
         }
 
         .pagination-list {
-            flex-grow: 0;
-
-            .pagination-link {
-                @extend %pagination-box;
-            }
-
-            .pagination-link.is-current {
-                background-color: #56CCF2;
-                color: #000000;
-            }
+            // flex-grow: 0;
         }
     }
+}
+
+@media(max-width: 1000px) {
+
+    .rowPaginationSort {
+        flex-wrap: wrap;
+    }
+
+
 }

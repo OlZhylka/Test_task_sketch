@@ -8,12 +8,12 @@ class {
 
 <section.sortItems>
   <div.columns.is-vcentered>
-    <div.column.sortLabel>Sort by</div>
+    <div.column.is-native.sortLabel>Sort by</div>
     <div.column.select>
       <select.selectForSort onChange("setSortingValue")>
         <option value="" selected disabled hidden>Sort options</option>
-        <option value="priceUp">ascending price</option>
-        <option value="priceDown">descending price</option>
+        <option selected=(input.sortValue=="priceUp") value="priceUp">ascending price</option>
+        <option selected=(input.sortValue=="priceDown") value="priceDown">descending price</option>
       </select>
     </div>
   </div>

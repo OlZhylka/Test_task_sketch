@@ -1,6 +1,6 @@
-// .containerMain .columns:not(:last-child).footerContent {
-//   margin-bottom: 0;
-// }
+.containerMain .columns:not(:last-child).footerContent {
+  margin-bottom: 0;
+}
 
 section.footerApp {
   %rowFlex {
@@ -17,8 +17,11 @@ section.footerApp {
   .blockNative {
     padding: 39px 13px 24px 19px;
 
-    .footerColumn:not(last-child) {
-      padding-right: 19px;
+    .footerColumn {
+      width: 280px;
+      &:not(last-child) {
+        padding-right: 19px;
+      }
     }
 
 
@@ -38,9 +41,11 @@ section.footerApp {
 
     .rowInfo {
       @extend %rowFlex;
+
       &:not(:last-child) {
-      margin-bottom: 11px;
+        margin-bottom: 11px;
       }
+
       .iconMap {
         margin-right: 7px;
       }
@@ -53,7 +58,7 @@ section.footerApp {
       .adressTel {
         @extend %text;
         line-height: calc(16/14);
-             }
+      }
     }
 
     .discription {
